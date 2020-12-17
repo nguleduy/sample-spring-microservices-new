@@ -1,7 +1,7 @@
-package com.example.departmentservice;
+package com.example.organization;
 
-import com.example.departmentservice.model.Department;
-import com.example.departmentservice.repository.DepartmentRepository;
+import com.example.organization.model.Organization;
+import com.example.organization.repository.OrganizationRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -18,29 +18,27 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableDiscoveryClient
 @EnableFeignClients
 @EnableSwagger2
-public class DepartmentServiceApplication {
+public class OrganizationApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(DepartmentServiceApplication.class, args);
+    SpringApplication.run(OrganizationApplication.class, args);
   }
 
   @Bean
-  public Docket swaggerPersonApi10() {
+  public Docket swaggerApi() {
     return new Docket(DocumentationType.SWAGGER_2)
             .select()
-            .apis(RequestHandlerSelectors.basePackage("com.example.departmentservice.controller"))
+            .apis(RequestHandlerSelectors.basePackage("pl.piomin.services.organization.controller"))
             .paths(PathSelectors.any())
             .build()
-            .apiInfo(new ApiInfoBuilder().version("1.0").title("Employee API").description("Documentation Employee API v1.0").build());
+            .apiInfo(new ApiInfoBuilder().version("1.0").title("Organization API").description("Documentation Organization API v1.0").build());
   }
 
   @Bean
-  DepartmentRepository repository() {
-    DepartmentRepository repository = new DepartmentRepository();
-    repository.add(new Department(1L, "Development"));
-    repository.add(new Department(1L, "Operations"));
-    repository.add(new Department(2L, "Development"));
-    repository.add(new Department(2L, "Operations"));
+  OrganizationRepository repository() {
+    OrganizationRepository repository = new OrganizationRepository();
+    repository.add(new Organization("Microsoft", "Redmond, Washington, USA"));
+    repository.add(new Organization("Oracle", "Redwood City, California, USA"));
     return repository;
   }
 
