@@ -1,3 +1,4 @@
 rootProject.name = 'sample-spring-microservice-new'
 include ':discovery-service'
 include ':config-service'
+include ':employee-service'
