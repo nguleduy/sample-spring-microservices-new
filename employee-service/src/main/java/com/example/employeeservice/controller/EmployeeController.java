@@ -21,7 +21,7 @@ public class EmployeeController {
   @Autowired
   EmployeeRepository repository;
 
-  @PostMapping
+  @PostMapping("/")
   public Employee add(@RequestBody Employee employee) {
     LOGGER.info("Employee add: {}", employee);
     return repository.add(employee);
@@ -33,7 +33,7 @@ public class EmployeeController {
     return repository.findById(id);
   }
 
-  @GetMapping
+  @GetMapping("/")
   public List<Employee> findAll() {
     LOGGER.info("Employee find");
     return repository.findAll();
